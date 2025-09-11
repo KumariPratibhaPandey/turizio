@@ -1,0 +1,57 @@
+<div class="container my-5">
+<h2 class="text-center mb-4">
+  {{ activeStateFilter ? activeStateFilter + ' Tourist Spots' : 'All Tourist Spots in India' }}
+</h2>
+
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        {{ activeStateFilter ? activeStateFilter : 'Filter by State' }}
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" (click)="filterByState('')">All States</a></li>
+        <li *ngFor="let state of states"><a class="dropdown-item" (click)="filterByState(state)">{{ state }}</a></li>
+      </ul>
+    </div>
+
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Sort By
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" (click)="sortByNameAsc()">Name (A-Z)</a></li>
+        <li><a class="dropdown-item" (click)="sortByNameDesc()">Name (Z-A)</a></li>
+        <li><a class="dropdown-item" (click)="sortByPopularity()">Popularity</a></li>
+      </ul>
+    </div>
+  </div>
+<div class="mb-4">
+  <input type="text" [(ngModel)]="searchText" (input)="filterBySearch()" 
+         class="form-control" placeholder="Search tourist spot...">
+</div>
+  <div class="row">
+    <div *ngFor="let place of filteredPlaces" class="col-md-4 mb-4">
+      <div class="card shadow-sm h-100">
+        <img [src]="place.image" class="card-img-top" [alt]="place.name">
+        <div class="card-body">
+          <h5 class="card-title">{{ place.name }}</h5>
+          <p class="card-text">{{ place.description }}</p>
+           <p>
+    <span *ngFor="let tag of place.categories" class="badge bg-info me-1">{{ tag }}</span>
+  </p>
+          <small class="text-muted me-2">{{ getPopularityText(place.popularity) }}</small>
+           <div class="stars-container d-inline-block">
+              <span *ngFor="let star of getStarsArray(place.popularity)">⭐</span>
+            </div>
+        </div>
+        <div class="card-footer d-flex justify-content-between align-items-center">
+          <div>
+            <small class="text-muted me-2">{{ place.city }}</small>
+          </div>
+          <a [routerLink]="['/book-tour']" class="btn btn-sm btn-primary">View Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

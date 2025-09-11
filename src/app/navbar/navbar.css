@@ -1,0 +1,29 @@
+.navbar {
+  background-color: var(--bg-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem 2rem;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.brand-name {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+  color: var(--primary-color);
+}
+
+.nav-link {
+  color: var(--text-color);
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.3s ease;
+  margin: 0 0.75rem;
+}
+
+.nav-link:hover {
+  color: var(--secondary-color);
+  transform: translateY(-2px);
+}

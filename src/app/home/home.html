@@ -1,0 +1,25 @@
+<div class="hero-section">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Your Journey Starts Here</h1>
+    <p>Explore breathtaking destinations and book your dream tour today.</p>
+    <a routerLink="/destinations" class="btn btn-primary btn-lg">Explore Destinations</a>
+  </div>
+</div>
+
+<div class="container my-5">
+  <h2 class="text-center mb-4">Famous States</h2>
+  <div class="row">
+    <div *ngFor="let state of featuredStates" class="col-md-4 mb-4">
+      <div class="card shadow-sm">
+        <a [routerLink]="['/destinations']" [queryParams]="{ state: state.state }">
+  <img [src]="state.image" class="card-img-top" [alt]="state.state">
+</a>
+        <div class="card-body">
+          <h5 class="card-title">{{ state.state }}</h5>
+          <p class="card-text">{{ state.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
