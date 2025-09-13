@@ -1,1 +1,46 @@
-<p>book-tour works!</p>
+<div class="booking-container">
+  <h2>Book Your Tour</h2>
+
+  <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+    <!-- Destination -->
+    <label>Destination</label>
+    <select formControlName="destination">
+      <option value="">--Select Destination--</option>
+      <option *ngFor="let dest of destinations" [value]="dest">{{ dest }}</option>
+    </select>
+    @if (destination?.invalid && destination?.touched) {
+      <div class="error-message">Destination is required.</div>
+    }
+
+    <!-- Date -->
+    <label>Date</label>
+    <input type="date" formControlName="date" />
+    @if (date?.invalid && date?.touched) {
+      <div class="error-message">Date is required.</div>
+    }
+
+    <!-- People -->
+    <label>Number of People</label>
+    <input type="number" formControlName="people" />
+    @if (people?.invalid && people?.touched) {
+      <div class="error-message">Must be at least 1 person.</div>
+    }
+
+    <!-- Name -->
+    <label>Name</label>
+    <input type="text" formControlName="name" />
+    @if (name?.invalid && name?.touched) {
+      <div class="error-message">Name must be at least 3 characters.</div>
+    }
+
+    <!-- Email -->
+    <label>Email</label>
+    <input type="email" formControlName="email" />
+    @if (email?.invalid && email?.touched) {
+      <div class="error-message">Enter a valid email.</div>
+    }
+
+    <!-- Submit -->
+    <button type="submit" [disabled]="bookingForm.invalid">Book Now</button>
+  </form>
+</div>

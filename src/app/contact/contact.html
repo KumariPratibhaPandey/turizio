@@ -1,1 +1,36 @@
-<p>contact works!</p>
+<div class="contact-container">
+  <h2>Contact Us</h2>
+
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
+    <!-- Name -->
+    <label>Name</label>
+    <input type="text" formControlName="name" placeholder="Your Name" />
+    <div class="error-message" *ngIf="name?.invalid && name?.touched">
+      Name must be at least 3 characters.
+    </div>
+
+    <!-- Email -->
+    <label>Email</label>
+    <input type="email" formControlName="email" placeholder="Your Email" />
+    <div class="error-message" *ngIf="email?.invalid && email?.touched">
+      Enter a valid email address.
+    </div>
+
+    <!-- Subject -->
+    <label>Subject</label>
+    <input type="text" formControlName="subject" placeholder="Subject" />
+    <div class="error-message" *ngIf="subject?.invalid && subject?.touched">
+      Subject is required.
+    </div>
+
+    <!-- Message -->
+    <label>Message</label>
+    <textarea formControlName="message" placeholder="Your Message"></textarea>
+    <div class="error-message" *ngIf="message?.invalid && message?.touched">
+      Message must be at least 10 characters.
+    </div>
+
+    <button type="submit" [disabled]="contactForm.invalid">Send Message</button>
+  </form>
+</div>
